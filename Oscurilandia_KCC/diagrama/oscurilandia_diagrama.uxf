@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>124</x>
+      <y>256</y>
+      <w>152</w>
+      <h>124</h>
+    </coordinates>
+    <panel_attributes>/Carro/
+--
+-cantidadOcupantes: int
+-fechaIngreso: int[3]
+-ubicacionFila: int
+-ubicacionColumna: int
+-LARGO: int
+-id: char
+-vida: int
+--
++setCantidadOcupantes(): void
++getCantidadOcupantes(): int
++setFechaIngreso(fechaIngreso: int[3]): void
++getFechaIngreso(): int[]
++setUbicacionFila(ubicacionFila: int): void
++getUbicacionFila(): int
++setUbicacionColumna(ubicacionColumna: int): void
++getUbicacionColumna(): int
++toString(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>432</y>
+      <w>112</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>Kromi
+--
+-anoFabricacion: int
+-marca: String
+--
++Kromi(anoFabricacion: int, marca: String)
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>432</y>
+      <w>112</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>Caguano
+--
+-alcanceTiro: int
+-colorConfeti: String
+--
++Caguano(alcanceTiro: int, colorConfeti: String)
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>256</x>
+      <y>432</y>
+      <w>128</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>Trupalla
+--
+-nivelArmadura: int
+-nombrePiloto: String
+--
++Caguano(alcanceTiro: int, colorConfeti: String)
++toString(): String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>396</x>
+      <y>444</y>
+      <w>64</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>Armadura entre 1-5</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>444</y>
+      <w>24</w>
+      <h>12</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>196</x>
+      <y>376</y>
+      <w>12</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>196</x>
+      <y>408</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;300.0;20.0;300.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>72</x>
+      <y>412</y>
+      <w>136</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;50.0;10.0;10.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>668</x>
+      <y>272</y>
+      <w>136</w>
+      <h>76</h>
+    </coordinates>
+    <panel_attributes>Huevo
+--
+-ubicacionFila: int
+-ubicacionColumna: int
+-puntajeObtenido: double
+--
++getUbicacionFila(): int
++setUbicacionFila(ubicacionFila: int): void
++getUbicacionColumna(): int
++setUbicacionColumna(ubicacionColumna: int): void
++getpuntajeObtenido(): double
++toString(): String </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>272</y>
+      <w>160</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>static Tablero
+--
+-FILAS_TABLERO: 15
+-COLUMNAS_TABLERO: 15
+-tablero: char[][]
+-carros: Carro[]
+-huevos: ArrayList
+--
++getFilasTablero(): int
++getColumnasTablero(): int
++crearCarro(): Carro
++lanzarHuevo(fila: int, columna: int): Huevo
++mostrarMatriz(): void
+-calcularPuntaje(): double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>308</y>
+      <w>196</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..18</panel_attributes>
+    <additional_attributes>470.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>616</x>
+      <y>308</y>
+      <w>60</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>344</x>
+      <y>260</y>
+      <w>84</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>mostrarMatriz(): void
+--
+Muestra la matriz
+ - carros existentes
+ - lanzamientos 'H'
+ - calcularPuntaje(): double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>424</x>
+      <y>272</y>
+      <w>44</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;50.0;80.0;90.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>208</y>
+      <w>76</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+
+--
++imprimeMenu(): void
++solicitaCoordenadas(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>536</x>
+      <y>244</y>
+      <w>12</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>424</x>
+      <y>148</y>
+      <w>128</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>El usuario podra ingresar las coordenadas
+de los huevos.
+Se cierra cuando el tablero esta lleno de
+huevos o interrumpido por el usuario</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>484</x>
+      <y>172</y>
+      <w>28</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;50.0;130.0</additional_attributes>
+  </element>
+</diagram>
