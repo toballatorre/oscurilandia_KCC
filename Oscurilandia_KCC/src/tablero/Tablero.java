@@ -46,7 +46,7 @@ public class Tablero {
      */
     public void crearHuevo(int fila, int columna) {
 
-        if (estaVacia(fila, columna)) {
+        if (estaVacia(fila, columna) || tablero[fila][columna].getTipo() == 'H') {
             tablero[fila][columna] = new Huevo(fila, columna);
         } else {
             Carro c = (Carro) tablero[fila][columna];
@@ -76,7 +76,7 @@ public class Tablero {
                 // Confirma si los demas espacios estan vacios, luego ingresa el carro
                 if (estaVacia((coordenada[0] + 1), coordenada[1]) && estaVacia((coordenada[0] + 2), coordenada[1])) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Kromi(3, "K-" + cKromi);
+                    tablero[coordenada[0]][coordenada[1]] = new Kromi("K-" + cKromi);
                     tablero[coordenada[0] + 1][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
                     tablero[coordenada[0] + 2][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
                     Carro k = (Carro)tablero[coordenada[0]][coordenada[1]];
@@ -100,7 +100,7 @@ public class Tablero {
                 // Confirma si el siguiente espacio esta vacio, luego ingresa el carro
                 if (estaVacia(coordenada[0], (coordenada[1] + 1))) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Caguano(2, "C-" + cCaguano);
+                    tablero[coordenada[0]][coordenada[1]] = new Caguano("C-" + cCaguano);
                     tablero[coordenada[0]][coordenada[1] + 1] = tablero[coordenada[0]][coordenada[1]];
                     Carro c = (Carro)tablero[coordenada[0]][coordenada[1]];
                     carros.add(c);
@@ -120,7 +120,7 @@ public class Tablero {
             // Confirma si el espacio esta vacio
             if (estaVacia(coordenada[0], coordenada[1])) {
 
-                tablero[coordenada[0]][coordenada[1]] = new Trupalla("T-" + cTrupalla, "Grackor");
+                tablero[coordenada[0]][coordenada[1]] = new Trupalla("T-" + cTrupalla);
                 Carro t = (Carro)tablero[coordenada[0]][coordenada[1]];
                 carros.add(t);
                 cTrupalla++;
@@ -162,7 +162,7 @@ public class Tablero {
      * Muestra la matriz en pantalla con los carros y lo que haya dentro que sea
      * IUbicable
      */
-    public void mostrarMatriz() {
+    public void mostrarMatriz(boolean oculta) {
 
         // ========== MARGEN SUPERIOR ╔═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╗
 
@@ -191,7 +191,7 @@ public class Tablero {
                 System.out.print(MARGENES[3]); // ║
 
                 // Muestra el contenido vacio o no
-                if (estaVacia(i, j))
+                if (estaVacia(i, j) || (oculta && tablero[i][j].getTipo() != 'H'))
                     System.out.print(" ");
                 else {
                     System.out.print(tablero[i][j].getTipo());

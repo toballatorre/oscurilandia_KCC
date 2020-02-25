@@ -22,9 +22,10 @@ public class Kromi extends Carro {
      * @param anoFabricacion
      * @param marca
      */
-    public Kromi(int cantidadOcupantes, String id) {
+    public Kromi(String id) {
 
-        super(cantidadOcupantes, id);
+        super(id);
+        setCantidadOcupantes(10);
         setTamano(TAMANO);
         generaAno();
         generaMarca();

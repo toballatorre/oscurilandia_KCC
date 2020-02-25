@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        boolean continuar = true;
 
         Tablero camaraSecreta = new Tablero();
-        camaraSecreta.mostrarMatriz();
+        camaraSecreta.mostrarMatriz(false);
 
         int fila;
         int columna;
         String op;
-        boolean continuar = true;
 
         do {
             System.out.println("Ingrese coordenadas entre 0..14");
@@ -21,7 +21,7 @@ public class Main {
                 columna = entrada.nextInt();
 
             camaraSecreta.crearHuevo(fila, columna);
-            camaraSecreta.mostrarMatriz();
+            camaraSecreta.mostrarMatriz(false);
 
             System.out.println("Desea continuar? (s/n)");
             op = entrada.next();
@@ -30,8 +30,10 @@ public class Main {
             }
 
         } while (continuar);
-
+        
+        camaraSecreta.mostrarMatriz(continuar);
         camaraSecreta.muestraHuevos();
+        System.out.println("");
         camaraSecreta.muestraCarros();
 
     }

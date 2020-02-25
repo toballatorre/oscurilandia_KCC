@@ -7,7 +7,9 @@ public class Huevo implements IUbicable {
     private int fila;
     private int columna;
     private int puntaje;
-
+    
+    // ========== CONSTRUCTORES ==========
+    
     public Huevo(int fila, int columna) {
         this.puntaje = 0;
         ubicar(fila, columna);
@@ -15,22 +17,27 @@ public class Huevo implements IUbicable {
 
     public Huevo(int fila, int columna, char tipo, int vida) {
         this(fila, columna);
-        asiganarPuntaje(tipo, vida);
+        asignarPuntaje(tipo, vida);
     }
-    
-    private void asiganarPuntaje(char tipo, int vida) {
+    // ========== METODOS ===========
+    /**
+     * 
+     * @param tipo
+     * @param vida
+     */
+    private void asignarPuntaje(char tipo, int vida) {
         
         if (tipo == 'H') {
             this.puntaje = 0;
         }else {
             if (tipo == 'K' && vida == 0) {
                 this.puntaje = 13;
-            }else {
+            }else if(tipo == 'K') {
                 this.puntaje = 3;
             }
             if (tipo == 'C' && vida == 0) {
                 this.puntaje = 9;
-            }else {
+            }else if(tipo == 'C'){
                 this.puntaje = 2;
             }
             if (tipo == 'T') {

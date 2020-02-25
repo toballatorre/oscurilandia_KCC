@@ -22,8 +22,9 @@ public class Caguano extends Carro {
      * @param alcanceTiro
      * @param colorConfeti
      */
-    public Caguano(int cantidadOcupantes, String id) {
-        super(cantidadOcupantes, id);
+    public Caguano(String id) {
+        super(id);
+        setCantidadOcupantes(4);
         setTamano(TAMANO);
         this.alcanceTiro = 10;
         generaColor();

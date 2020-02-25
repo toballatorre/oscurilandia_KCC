@@ -15,11 +15,12 @@ public class Trupalla extends Carro {
      * @param armadura
      * @param nombrePiloto
      */
-    public Trupalla(String id, String nombrePiloto) {
-        super(1, id);
+    public Trupalla(String id) {
+        super(id);
+        setCantidadOcupantes(1);
         setTamano(TAMANO);
         generaArmadura();
-        this.nombrePiloto = nombrePiloto;
+        generaNombre();
     }
 
     // Metodos Get and Set
@@ -56,6 +57,15 @@ public class Trupalla extends Carro {
         this.nombrePiloto = nombrePiloto;
     }
 
+    private void generaNombre() {
+        String[] nombres = { "Pepe", "Juan", "Antonia", "Destroyer", "Goliath", "Karla", "Shina" };
+        int i = (int) (Math.random() * nombres.length);
+        this.nombrePiloto = nombres[i];
+    }
+
+    /**
+     * 
+     */
     private void generaArmadura() {
         this.armadura = (int) (Math.random() * 5 + 1);
     }
