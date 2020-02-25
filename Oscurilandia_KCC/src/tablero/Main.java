@@ -6,6 +6,7 @@ public class Main {
         
         Tablero camaraSecreta = new Tablero();
         camaraSecreta.mostrarMatriz();
+        
     }
 
 }

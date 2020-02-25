@@ -18,11 +18,29 @@ public class Tablero {
     private ArrayList<Carro> carros;
     private ArrayList<Huevo> huevos;
     private IUbicable[][] tablero = new IUbicable[FILAS][COLUMNAS];
-
+    
+    // =========== CONSTRUCTOR ==========
+    
     public Tablero() {
         crearCarro();
     }
-
+    
+    // ========== METODOS ==========
+    /**
+     * 
+     * @param fila
+     * @param columna
+     */
+    public void crearHuevo(int fila, int columna) {
+       
+        if(estaVacia(fila, columna)) {
+            tablero[fila][columna] = new Huevo(fila, columna);
+        } else {
+            
+        }
+        
+    }
+    
     /**
      * Crea los carros y los agrega en la matriz y en el arreglo carros
      */
@@ -155,15 +173,7 @@ public class Tablero {
                 if (estaVacia(i, j))
                     System.out.print(" ");
                 else {
-                    if (tablero[i][j].getTipo() == 'K') {
-                        System.out.print("K");
-                    }
-                    if (tablero[i][j].getTipo() == 'C') {
-                        System.out.print("C");
-                    }
-                    if (tablero[i][j].getTipo() == 'T') {
-                        System.out.print("T");
-                    }
+                    System.out.print(tablero[i][j].getTipo());
                 }
                 // Margen al final del contenido y salto de linea
                 if (j == COLUMNAS - 1)
