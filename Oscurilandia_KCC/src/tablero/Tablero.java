@@ -11,6 +11,7 @@ public class Tablero {
     public final int CANTIDAD_KROMI = 3;
     public final int CANTIDAD_CAGUANO = 5;
     public final int CANTIDAD_TRUPALLA = 10;
+    private final char[] margenes = { '╔', '╗', '╦', '║', '╠', '═', '╣', '╬', '╚', '╝', '╩' };
 
     public final int FILAS = 15;
     public final int COLUMNAS = 15;
@@ -108,29 +109,102 @@ public class Tablero {
 
         return coordenada;
     }
-
+    
     public void mostrarMatriz() {
+        for (int i = 0; i <= COLUMNAS * 2; i++) {
 
+            if (i % 2 == 0) {
+                if (i == 0)
+                    System.out.print(margenes[0]);
+                else {
+                    if (i == FILAS * 2)
+                        System.out.print(margenes[1] + "\n");
+                    else
+                        System.out.print(margenes[2]);
+                }
+            } else {
+                System.out.print(margenes[5]);
+            }
+        }
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
-
+                System.out.print(margenes[3]);
                 if (estaVacia(i, j))
-                    System.out.print("[ ]");
+                    System.out.print(" ");
                 else {
                     if (tablero[i][j].getTipo() == 'K') {
-                        System.out.print("[K]");
+                        System.out.print("K");
                     }
                     if (tablero[i][j].getTipo() == 'C') {
-                        System.out.print("[C]");
+                        System.out.print("C");
                     }
                     if (tablero[i][j].getTipo() == 'T') {
-                        System.out.print("[T]");
+                        System.out.print("T");
                     }
                 }
-            } // FOR J
-            System.out.print("\n");
-        } // FOR I
+                if (j == COLUMNAS - 1)
+                    System.out.print(margenes[3] + "\n");
 
-    }// FIN MOSTRAR
+            }
+            if (i != FILAS - 1) {
+                for (int j = 0; j <= COLUMNAS * 2; j++) {
+
+                    if (j % 2 == 0) {
+                        if (j == 0)
+                            System.out.print(margenes[4]);
+                        else {
+                            if (j == COLUMNAS * 2)
+                                System.out.print(margenes[6] + "\n");
+                            else
+                                System.out.print(margenes[7]);
+                        }
+                    } else {
+                        System.out.print(margenes[5]);
+                    }
+                }
+            } else {
+                for (int j = 0; j <= COLUMNAS * 2; j++) {
+
+                    if (j % 2 == 0) {
+                        if (j == 0)
+                            System.out.print(margenes[8]);
+                        else {
+                            if (j == COLUMNAS * 2)
+                                System.out.print(margenes[9] + "\n");
+                            else
+                                System.out.print(margenes[10]);
+                        }
+                    } else {
+                        System.out.print(margenes[5]);
+                    }
+                }
+
+            }
+        }
+    }
+
+//    public void mostrarMatriz() {
+//
+//        for (int i = 0; i < FILAS; i++) {
+//            for (int j = 0; j < COLUMNAS; j++) {
+//
+//                if (estaVacia(i, j))
+//                    System.out.print("[ ]");
+//                else {
+//                    if (tablero[i][j].getTipo() == 'K') {
+//                        System.out.print("[K]");
+//                    }
+//                    if (tablero[i][j].getTipo() == 'C') {
+//                        System.out.print("[C]");
+//                    }
+//                    if (tablero[i][j].getTipo() == 'T') {
+//                        System.out.print("[T]");
+//                    }
+//                }
+//            }
+//            System.out.print("\n");
+//        } 
+//
+//    }
 
 }
