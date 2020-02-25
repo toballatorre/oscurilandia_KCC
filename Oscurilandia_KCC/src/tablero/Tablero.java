@@ -11,7 +11,7 @@ public class Tablero {
     public final int CANTIDAD_KROMI = 3;
     public final int CANTIDAD_CAGUANO = 5;
     public final int CANTIDAD_TRUPALLA = 10;
-    private final char[] margenes = { '╔', '╗', '╦', '║', '╠', '═', '╣', '╬', '╚', '╝', '╩' };
+    private final char[] MARGENES = { '╔', '╗', '╦', '║', '╠', '═', '╣', '╬', '╚', '╝', '╩' };
 
     public final int FILAS = 15;
     public final int COLUMNAS = 15;
@@ -109,26 +109,37 @@ public class Tablero {
 
         return coordenada;
     }
-    
+
+    /**
+     * Muestra la matriz en pantalla con los carros y lo que haya dentro que sea
+     * IUbicable
+     */
     public void mostrarMatriz() {
+
+        // Margenes superiores
         for (int i = 0; i <= COLUMNAS * 2; i++) {
 
             if (i % 2 == 0) {
                 if (i == 0)
-                    System.out.print(margenes[0]);
+                    System.out.print(MARGENES[0]); // ╔
                 else {
                     if (i == FILAS * 2)
-                        System.out.print(margenes[1] + "\n");
+                        System.out.print(MARGENES[1] + "\n"); // ╗
                     else
-                        System.out.print(margenes[2]);
+                        System.out.print(MARGENES[2]); // ╦
                 }
             } else {
-                System.out.print(margenes[5]);
+                System.out.print(MARGENES[5]); // ═
             }
         }
+        // Muestra el contenido vacio o lleno y margenes
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
-                System.out.print(margenes[3]);
+
+                // Margen antes del contenido
+                System.out.print(MARGENES[3]); // ║
+
+                // Muestra el contenido vacio o no
                 if (estaVacia(i, j))
                     System.out.print(" ");
                 else {
@@ -142,40 +153,44 @@ public class Tablero {
                         System.out.print("T");
                     }
                 }
+                // Margen al final del contenido y salto de linea
                 if (j == COLUMNAS - 1)
-                    System.out.print(margenes[3] + "\n");
+                    System.out.print(MARGENES[3] + "\n"); // ║
 
             }
+
+            // Margenes entremedio del contenido
             if (i != FILAS - 1) {
                 for (int j = 0; j <= COLUMNAS * 2; j++) {
 
                     if (j % 2 == 0) {
                         if (j == 0)
-                            System.out.print(margenes[4]);
+                            System.out.print(MARGENES[4]); // ╠
                         else {
                             if (j == COLUMNAS * 2)
-                                System.out.print(margenes[6] + "\n");
+                                System.out.print(MARGENES[6] + "\n"); // ╣
                             else
-                                System.out.print(margenes[7]);
+                                System.out.print(MARGENES[7]); // ╬
                         }
                     } else {
-                        System.out.print(margenes[5]);
+                        System.out.print(MARGENES[5]); // ═
                     }
                 }
+                // Margen inferior de la matriz
             } else {
                 for (int j = 0; j <= COLUMNAS * 2; j++) {
 
                     if (j % 2 == 0) {
                         if (j == 0)
-                            System.out.print(margenes[8]);
+                            System.out.print(MARGENES[8]);// ╚
                         else {
                             if (j == COLUMNAS * 2)
-                                System.out.print(margenes[9] + "\n");
+                                System.out.print(MARGENES[9] + "\n"); // ╝
                             else
-                                System.out.print(margenes[10]);
+                                System.out.print(MARGENES[10]); // ╩
                         }
                     } else {
-                        System.out.print(margenes[5]);
+                        System.out.print(MARGENES[5]); // ═
                     }
                 }
 
