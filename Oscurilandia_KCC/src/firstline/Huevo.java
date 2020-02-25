@@ -13,10 +13,32 @@ public class Huevo implements IUbicable {
         ubicar(fila, columna);
     }
 
-//    public Huevo(int fila, int columna, char tipo) {
-//        this(fila, columna);
-//        asignarPuntaje(tipo);
-//    }
+    public Huevo(int fila, int columna, char tipo, int vida) {
+        this(fila, columna);
+        asiganarPuntaje(tipo, vida);
+    }
+    
+    private void asiganarPuntaje(char tipo, int vida) {
+        
+        if (tipo == 'H') {
+            this.puntaje = 0;
+        }else {
+            if (tipo == 'K' && vida == 0) {
+                this.puntaje = 13;
+            }else {
+                this.puntaje = 3;
+            }
+            if (tipo == 'C' && vida == 0) {
+                this.puntaje = 9;
+            }else {
+                this.puntaje = 2;
+            }
+            if (tipo == 'T') {
+                this.puntaje = 1;
+            }
+        }
+        
+    }
 
     /**
      * @return the fila

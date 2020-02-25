@@ -15,32 +15,50 @@ public class Tablero {
     public final int FILAS = 15;
     public final int COLUMNAS = 15;
 
-    private ArrayList<Carro> carros;
-    private ArrayList<Huevo> huevos;
+    private ArrayList<Carro> carros = new ArrayList<Carro>();
+    private ArrayList<Huevo> huevos = new ArrayList<Huevo>();
     private IUbicable[][] tablero = new IUbicable[FILAS][COLUMNAS];
-    
+
     // =========== CONSTRUCTOR ==========
-    
+
     public Tablero() {
         crearCarro();
     }
-    
+
     // ========== METODOS ==========
+    
+    public void muestraHuevos() {
+        for (Huevo huevo : this.huevos) {
+            System.out.print("["+huevo.getPuntaje()+"]");
+        }
+    }
+    
+    public void muestraCarros() {
+        for (Carro carro : this.carros) {
+            System.out.print("["+carro.getId()+"]");
+        }
+    }
+    
     /**
      * 
      * @param fila
      * @param columna
      */
     public void crearHuevo(int fila, int columna) {
-       
-        if(estaVacia(fila, columna)) {
+
+        if (estaVacia(fila, columna)) {
             tablero[fila][columna] = new Huevo(fila, columna);
         } else {
-            
+            Carro c = (Carro) tablero[fila][columna];
+            c.quitaVida();
+            tablero[fila][columna] = new Huevo(fila, columna, c.getTipo(), c.getTamano());
         }
-        
+        Huevo h = (Huevo) tablero[fila][columna];
+        huevos.add(h);
+        System.out.println(h.getPuntaje());
+
     }
-    
+
     /**
      * Crea los carros y los agrega en la matriz y en el arreglo carros
      */
@@ -58,14 +76,16 @@ public class Tablero {
                 // Confirma si los demas espacios estan vacios, luego ingresa el carro
                 if (estaVacia((coordenada[0] + 1), coordenada[1]) && estaVacia((coordenada[0] + 2), coordenada[1])) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Kromi(3, "K-" + cKromi, 1998, "Flaco");
+                    tablero[coordenada[0]][coordenada[1]] = new Kromi(3, "K-" + cKromi);
                     tablero[coordenada[0] + 1][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
                     tablero[coordenada[0] + 2][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
+                    Carro k = (Carro)tablero[coordenada[0]][coordenada[1]];
+                    carros.add(k);
                     cKromi++;
                 }
 
             }
-
+            
         } while (cKromi < CANTIDAD_KROMI);
 
         // ========== CREAN CAGUANOS ==========
@@ -80,8 +100,10 @@ public class Tablero {
                 // Confirma si el siguiente espacio esta vacio, luego ingresa el carro
                 if (estaVacia(coordenada[0], (coordenada[1] + 1))) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Caguano(2, "C-" + cCaguano, 1998, "Flaco");
+                    tablero[coordenada[0]][coordenada[1]] = new Caguano(2, "C-" + cCaguano);
                     tablero[coordenada[0]][coordenada[1] + 1] = tablero[coordenada[0]][coordenada[1]];
+                    Carro c = (Carro)tablero[coordenada[0]][coordenada[1]];
+                    carros.add(c);
                     cCaguano++;
                 }
 
@@ -98,7 +120,9 @@ public class Tablero {
             // Confirma si el espacio esta vacio
             if (estaVacia(coordenada[0], coordenada[1])) {
 
-                tablero[coordenada[0]][coordenada[1]] = new Trupalla(1, "T-" + cTrupalla, 1, "Grackor");
+                tablero[coordenada[0]][coordenada[1]] = new Trupalla("T-" + cTrupalla, "Grackor");
+                Carro t = (Carro)tablero[coordenada[0]][coordenada[1]];
+                carros.add(t);
                 cTrupalla++;
             }
 

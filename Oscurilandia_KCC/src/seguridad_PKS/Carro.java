@@ -123,6 +123,10 @@ public abstract class Carro implements IUbicable {
     }
 
     // ========== METODOS ==========
+    
+    public void quitaVida() {
+        this.tamano--;
+    }
 
     private String generaFecha() {
         int dia;

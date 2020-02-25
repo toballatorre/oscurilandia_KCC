@@ -22,11 +22,11 @@ public class Caguano extends Carro {
      * @param alcanceTiro
      * @param colorConfeti
      */
-    public Caguano(int cantidadOcupantes, String id, int alcanceTiro, String colorConfeti) {
+    public Caguano(int cantidadOcupantes, String id) {
         super(cantidadOcupantes, id);
         setTamano(TAMANO);
-        this.alcanceTiro = alcanceTiro;
-        this.colorConfeti = colorConfeti;
+        this.alcanceTiro = 10;
+        generaColor();
     }
     
 
@@ -62,6 +62,14 @@ public class Caguano extends Carro {
      */
     public void setColorConfeti(String colorConfeti) {
         this.colorConfeti = colorConfeti;
+    }
+    /**
+     * 
+     */
+    private void generaColor() {
+        String[] colores = { "Rojo", "Rosado", "Rojo Maraco Intenso", "Verde Limon", "Sangre De Toro"};
+        int i = (int) (Math.random() * colores.length);
+        this.colorConfeti = colores[i];
     }
 
     @Override

@@ -8,17 +8,17 @@ public class Trupalla extends Carro {
     private String nombrePiloto;
 
     // Constructor
-    
+
     /**
      * @param cantidadOcupantes
      * @param id
      * @param armadura
      * @param nombrePiloto
      */
-    public Trupalla(int cantidadOcupantes, String id, int armadura, String nombrePiloto) {
-        super(cantidadOcupantes, id);
+    public Trupalla(String id, String nombrePiloto) {
+        super(1, id);
         setTamano(TAMANO);
-        this.armadura = armadura;
+        generaArmadura();
         this.nombrePiloto = nombrePiloto;
     }
 
@@ -54,6 +54,10 @@ public class Trupalla extends Carro {
      */
     public void setNombrePiloto(String nombrePiloto) {
         this.nombrePiloto = nombrePiloto;
+    }
+
+    private void generaArmadura() {
+        this.armadura = (int) (Math.random() * 5 + 1);
     }
 
     @Override

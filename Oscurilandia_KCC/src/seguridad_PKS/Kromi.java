@@ -15,20 +15,21 @@ public class Kromi extends Carro {
     private String marca;
 
     // Constructor
-   
+
     /**
      * @param cantidadOcupantes
      * @param id
      * @param anoFabricacion
      * @param marca
      */
-    public Kromi(int cantidadOcupantes, String id, int anoFabricacion, String marca) {
+    public Kromi(int cantidadOcupantes, String id) {
+
         super(cantidadOcupantes, id);
         setTamano(TAMANO);
-        this.anoFabricacion = anoFabricacion;
-        this.marca = marca;
+        generaAno();
+        generaMarca();
+
     }
-    
 
     /**
      * Retorna el tipo que es
@@ -39,7 +40,6 @@ public class Kromi extends Carro {
     public char getTipo() {
         return 'K';
     }
-
 
     // Metodos Get and Set
     /**
@@ -68,6 +68,16 @@ public class Kromi extends Carro {
      */
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    private void generaAno() {
+        this.anoFabricacion = (int) (Math.random() * (2020 - 1998) + 1998);
+    }
+
+    private void generaMarca() {
+        String[] marcas = { "Chiwawa", "Waffles", "Caracoqueso", "Wachimingo" };
+        int i = (int) (Math.random() * marcas.length);
+        this.marca = marcas[i];
     }
 
     @Override
