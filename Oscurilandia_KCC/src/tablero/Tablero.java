@@ -1,7 +1,6 @@
 package tablero;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import firstline.*;
 import seguridad_PKS.*;
@@ -16,7 +15,7 @@ public class Tablero {
     public final int FILAS = 15;
     public final int COLUMNAS = 15;
 
-    private Carro[] carros = new Carro[18];
+    private ArrayList<Carro> carros;
     private ArrayList<Huevo> huevos;
     private IUbicable[][] tablero = new IUbicable[FILAS][COLUMNAS];
 
@@ -24,23 +23,27 @@ public class Tablero {
         crearCarro();
     }
 
+    /**
+     * Crea los carros y los agrega en la matriz y en el arreglo carros
+     */
     private void crearCarro() {
+        int[] coordenada;
+
+        // ========== CREAN KROMIS ==========
 
         int cKromi = 0;
-        int[] c;
-
-        // Creamos las Kromis
         do {
-            c = creaCoordenada();
+            coordenada = creaCoordenada();
+            // Confirma si esta dentro del rango y si esta vacio el espacio
+            if (coordenada[0] < (FILAS - 2) && estaVacia(coordenada[0], coordenada[1])) {
 
-            if (c[0] < (FILAS - 2) && estaVacia(c[0], c[1])) {// Si esta dentro del rango y esta vacio el punto de
-                                                              // inicio
+                // Confirma si los demas espacios estan vacios, luego ingresa el carro
+                if (estaVacia((coordenada[0] + 1), coordenada[1]) && estaVacia((coordenada[0] + 2), coordenada[1])) {
 
-                if (estaVacia((c[0] + 1), c[1]) && estaVacia((c[0] + 2), c[1])) {// si esta vacio los demas
-
-                    tablero[c[0]][c[1]] = new Kromi(3, 5, 12345, c[0], c[1], "K-" + cKromi, 1998, "Flaco");
-                    tablero[c[0] + 1][c[1]] = tablero[c[0]][c[1]];
-                    tablero[c[0] + 2][c[1]] = tablero[c[0]][c[1]];
+                    tablero[coordenada[0]][coordenada[1]] = new Kromi(3, 5, 12345, coordenada[0], coordenada[1],
+                            "K-" + cKromi, 1998, "Flaco");
+                    tablero[coordenada[0] + 1][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
+                    tablero[coordenada[0] + 2][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
                     cKromi++;
                 }
 
@@ -48,18 +51,21 @@ public class Tablero {
 
         } while (cKromi < CANTIDAD_KROMI);
 
-        // Creamos los Caguanos
+        // ========== CREAN CAGUANOS ==========
+
         int cCaguano = 0;
         do {
-            c = creaCoordenada();
+            coordenada = creaCoordenada();
 
-            if (c[1] < (COLUMNAS - 1) && estaVacia(c[0], c[1])) {// Si esta dentro del rango y esta vacio el punto de
-                                                                 // inicio
+            // Confirma si esta dentro del rango y si esta vacio el espacio
+            if (coordenada[1] < (COLUMNAS - 1) && estaVacia(coordenada[0], coordenada[1])) {
 
-                if (estaVacia(c[0], (c[1] + 1))) {// si esta vacio lo demas
+                // Confirma si el siguiente espacio esta vacio, luego ingresa el carro
+                if (estaVacia(coordenada[0], (coordenada[1] + 1))) {
 
-                    tablero[c[0]][c[1]] = new Caguano(2, 7, 98765, c[0], c[1], "C-" + cCaguano, 1998, "Flaco");
-                    tablero[c[0]][c[1] + 1] = tablero[c[0]][c[1]];
+                    tablero[coordenada[0]][coordenada[1]] = new Caguano(2, 7, 98765, coordenada[0], coordenada[1],
+                            "C-" + cCaguano, 1998, "Flaco");
+                    tablero[coordenada[0]][coordenada[1] + 1] = tablero[coordenada[0]][coordenada[1]];
                     cCaguano++;
                 }
 
@@ -67,14 +73,17 @@ public class Tablero {
 
         } while (cCaguano < CANTIDAD_CAGUANO);
 
-        // Creamos los Trupallas
+        // ========== CREAN CAGUANO ==========
+
         int cTrupalla = 0;
         do {
-            c = creaCoordenada();
+            coordenada = creaCoordenada();
 
-            if (estaVacia(c[0], c[1])) {// Si esta vacio
+            // Confirma si el espacio esta vacio
+            if (estaVacia(coordenada[0], coordenada[1])) {
 
-                tablero[c[0]][c[1]] = new Trupalla(1, 1, 768586, c[0], c[1], "T-" + cTrupalla, 1, "Grackor");
+                tablero[coordenada[0]][coordenada[1]] = new Trupalla(1, 1, 768586, coordenada[0], coordenada[1],
+                        "T-" + cTrupalla, 1, "Grackor");
                 cTrupalla++;
             }
 
@@ -116,7 +125,8 @@ public class Tablero {
      */
     public void mostrarMatriz() {
 
-        // Margenes superiores
+        // ========== MARGEN SUPERIOR ╔═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╗
+
         for (int i = 0; i <= COLUMNAS * 2; i++) {
 
             if (i % 2 == 0) {
@@ -132,7 +142,9 @@ public class Tablero {
                 System.out.print(MARGENES[5]); // ═
             }
         }
-        // Muestra el contenido vacio o lleno y margenes
+
+        // ========== MARGEN Y CONTENIDO ║K║T║ ║ ║ ║ ║ ║ ║T║ ║T║ ║ ║ ║K║
+
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
 
@@ -159,7 +171,8 @@ public class Tablero {
 
             }
 
-            // Margenes entremedio del contenido
+            // ========== MARGEN SEPARADOR DE FILAS ╠═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╣
+
             if (i != FILAS - 1) {
                 for (int j = 0; j <= COLUMNAS * 2; j++) {
 
@@ -176,7 +189,7 @@ public class Tablero {
                         System.out.print(MARGENES[5]); // ═
                     }
                 }
-                // Margen inferior de la matriz
+                // ========== MARGEN INFERIOR ╚═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╝
             } else {
                 for (int j = 0; j <= COLUMNAS * 2; j++) {
 
