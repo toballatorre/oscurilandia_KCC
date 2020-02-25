@@ -206,7 +206,6 @@ public class Tablero {
                         System.out.print(MARGENES[5]); // ═
                     }
                 }
-
             }
         }
     }
