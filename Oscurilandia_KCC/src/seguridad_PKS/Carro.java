@@ -14,7 +14,7 @@ public abstract class Carro implements IUbicable {
     // Atributos
     private int tamano;
     private int cantidadOcupantes;
-    private int fechaIngreso;
+    private String fechaIngreso;
     private int fila;
     private int columna;
     private String id;
@@ -32,7 +32,7 @@ public abstract class Carro implements IUbicable {
         super();
         this.tamano = tamano;
         this.cantidadOcupantes = cantidadOcupantes;
-        this.fechaIngreso = fechaIngreso;
+        this.fechaIngreso = generaFecha();
         this.fila = fila;
         this.columna = columna;
         this.id = id;
@@ -71,14 +71,14 @@ public abstract class Carro implements IUbicable {
     /**
      * @return the fechaIngreso
      */
-    public int getFechaIngreso() {
+    public String getFechaIngreso() {
         return fechaIngreso;
     }
 
     /**
      * @param fechaIngreso the fechaIngreso to set
      */
-    public void setFechaIngreso(int fechaIngreso) {
+    public void setFechaIngreso(String fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
