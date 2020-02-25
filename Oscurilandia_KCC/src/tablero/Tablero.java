@@ -183,28 +183,4 @@ public class Tablero {
         }
     }
 
-//    public void mostrarMatriz() {
-//
-//        for (int i = 0; i < FILAS; i++) {
-//            for (int j = 0; j < COLUMNAS; j++) {
-//
-//                if (estaVacia(i, j))
-//                    System.out.print("[ ]");
-//                else {
-//                    if (tablero[i][j].getTipo() == 'K') {
-//                        System.out.print("[K]");
-//                    }
-//                    if (tablero[i][j].getTipo() == 'C') {
-//                        System.out.print("[C]");
-//                    }
-//                    if (tablero[i][j].getTipo() == 'T') {
-//                        System.out.print("[T]");
-//                    }
-//                }
-//            }
-//            System.out.print("\n");
-//        } 
-//
-//    }
-
 }
