@@ -10,27 +10,25 @@ package seguridad_PKS;
 public class Kromi extends Carro {
 
     // Atributos
+    private final int TAMANO = 3;
     private int anoFabricacion;
     private String marca;
 
     // Constructor
+   
     /**
-     * @param tamano
      * @param cantidadOcupantes
-     * @param fechaIngreso
-     * @param fila
-     * @param columna
      * @param id
      * @param anoFabricacion
      * @param marca
      */
-    public Kromi(int tamano, int cantidadOcupantes, int fechaIngreso, int fila, int columna, String id,
-            int anoFabricacion, String marca) {
-        super(tamano, cantidadOcupantes, fechaIngreso, id);
+    public Kromi(int cantidadOcupantes, String id, int anoFabricacion, String marca) {
+        super(cantidadOcupantes, id);
+        setTamano(TAMANO);
         this.anoFabricacion = anoFabricacion;
         this.marca = marca;
-        ubicar(fila, columna);
     }
+    
 
     /**
      * Retorna el tipo que es
@@ -41,6 +39,7 @@ public class Kromi extends Carro {
     public char getTipo() {
         return 'K';
     }
+
 
     // Metodos Get and Set
     /**

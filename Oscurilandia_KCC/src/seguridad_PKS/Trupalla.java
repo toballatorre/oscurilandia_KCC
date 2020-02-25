@@ -3,26 +3,23 @@ package seguridad_PKS;
 public class Trupalla extends Carro {
 
     // Atributos
+    private final int TAMANO = 1;
     private int armadura;
     private String nombrePiloto;
 
     // Constructor
+    
     /**
-     * @param tamano
      * @param cantidadOcupantes
-     * @param fechaIngreso
-     * @param fila
-     * @param columna
      * @param id
      * @param armadura
      * @param nombrePiloto
      */
-    public Trupalla(int tamano, int cantidadOcupantes, int fechaIngreso, int fila, int columna, String id, int armadura,
-            String nombrePiloto) {
-        super(tamano, cantidadOcupantes, fechaIngreso, id);
+    public Trupalla(int cantidadOcupantes, String id, int armadura, String nombrePiloto) {
+        super(cantidadOcupantes, id);
+        setTamano(TAMANO);
         this.armadura = armadura;
         this.nombrePiloto = nombrePiloto;
-        ubicar(fila, columna);
     }
 
     // Metodos Get and Set

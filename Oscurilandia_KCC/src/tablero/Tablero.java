@@ -58,8 +58,7 @@ public class Tablero {
                 // Confirma si los demas espacios estan vacios, luego ingresa el carro
                 if (estaVacia((coordenada[0] + 1), coordenada[1]) && estaVacia((coordenada[0] + 2), coordenada[1])) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Kromi(3, 5, 12345, coordenada[0], coordenada[1],
-                            "K-" + cKromi, 1998, "Flaco");
+                    tablero[coordenada[0]][coordenada[1]] = new Kromi(3, "K-" + cKromi, 1998, "Flaco");
                     tablero[coordenada[0] + 1][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
                     tablero[coordenada[0] + 2][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
                     cKromi++;
@@ -81,8 +80,7 @@ public class Tablero {
                 // Confirma si el siguiente espacio esta vacio, luego ingresa el carro
                 if (estaVacia(coordenada[0], (coordenada[1] + 1))) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Caguano(2, 7, 98765, coordenada[0], coordenada[1],
-                            "C-" + cCaguano, 1998, "Flaco");
+                    tablero[coordenada[0]][coordenada[1]] = new Caguano(2, "C-" + cCaguano, 1998, "Flaco");
                     tablero[coordenada[0]][coordenada[1] + 1] = tablero[coordenada[0]][coordenada[1]];
                     cCaguano++;
                 }
@@ -100,8 +98,7 @@ public class Tablero {
             // Confirma si el espacio esta vacio
             if (estaVacia(coordenada[0], coordenada[1])) {
 
-                tablero[coordenada[0]][coordenada[1]] = new Trupalla(1, 1, 768586, coordenada[0], coordenada[1],
-                        "T-" + cTrupalla, 1, "Grackor");
+                tablero[coordenada[0]][coordenada[1]] = new Trupalla(1, "T-" + cTrupalla, 1, "Grackor");
                 cTrupalla++;
             }
 

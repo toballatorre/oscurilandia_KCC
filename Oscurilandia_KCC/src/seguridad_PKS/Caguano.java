@@ -8,30 +8,27 @@ package seguridad_PKS;
  *
  */
 public class Caguano extends Carro {
+    
     // Atributos
+    public final int TAMANO = 2;
     private int alcanceTiro;
     private String colorConfeti;
 
     // Constructor
+   
     /**
-     * @param tamano
      * @param cantidadOcupantes
-     * @param fechaIngreso
-     * @param fila
-     * @param columna
      * @param id
      * @param alcanceTiro
      * @param colorConfeti
      */
-    public Caguano(int tamano, int cantidadOcupantes, int fechaIngreso, int fila, int columna, String id,
-            int alcanceTiro, String colorConfeti) {
-
-        super(tamano, cantidadOcupantes, fechaIngreso, id);
-
+    public Caguano(int cantidadOcupantes, String id, int alcanceTiro, String colorConfeti) {
+        super(cantidadOcupantes, id);
+        setTamano(TAMANO);
         this.alcanceTiro = alcanceTiro;
         this.colorConfeti = colorConfeti;
-        ubicar(fila, columna);
     }
+    
 
     // Metodos Get and Set
     @Override

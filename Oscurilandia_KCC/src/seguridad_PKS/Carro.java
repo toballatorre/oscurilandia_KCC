@@ -28,9 +28,7 @@ public abstract class Carro implements IUbicable {
      * @param ubicacionTablero
      * @param id
      */
-    public Carro(int tamano, int cantidadOcupantes, int fechaIngreso, String id) {
-        super();
-        this.tamano = tamano;
+    public Carro(int cantidadOcupantes, String id) {
         this.cantidadOcupantes = cantidadOcupantes;
         this.fechaIngreso = generaFecha();
         this.fila = fila;
