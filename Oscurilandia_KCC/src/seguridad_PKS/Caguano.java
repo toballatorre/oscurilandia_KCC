@@ -22,8 +22,8 @@ public class Caguano extends Carro {
      * @param alcanceTiro
      * @param colorConfeti
      */
-    public Caguano(String id) {
-        super(id);
+    public Caguano(String id, int fila, int columna) {
+        super(id, fila, columna);
         setCantidadOcupantes(4);
         setTamano(TAMANO);
         this.alcanceTiro = 10;
@@ -71,11 +71,5 @@ public class Caguano extends Carro {
         String[] colores = { "Rojo", "Rosado", "Rojo Maraco Intenso", "Verde Limon", "Sangre De Toro"};
         int i = (int) (Math.random() * colores.length);
         this.colorConfeti = colores[i];
-    }
-
-    @Override
-    public void ubicar(int fila, int columna) {
-        setFila(fila);
-        setColumna(columna);
     }
 }

@@ -1,50 +1,52 @@
 package firstline;
 
-import tablero.IUbicable;
+import tablero.IIdentificable;
 
-public class Huevo implements IUbicable {
+public class Huevo implements IIdentificable {
 
     private int fila;
     private int columna;
     private int puntaje;
-    
+
     // ========== CONSTRUCTORES ==========
-    
+
     public Huevo(int fila, int columna) {
         this.puntaje = 0;
-        ubicar(fila, columna);
+        this.fila = fila;
+        this.columna = columna;
     }
 
     public Huevo(int fila, int columna, char tipo, int vida) {
         this(fila, columna);
         asignarPuntaje(tipo, vida);
     }
+
     // ========== METODOS ===========
+
     /**
+     * Asigna un puntaje segun el tipo de carro que impacta, si está vacio el
+     * espacio o cuando impacta un huevo.
      * 
      * @param tipo
      * @param vida
      */
     private void asignarPuntaje(char tipo, int vida) {
-        
-        if (tipo == 'H') {
-            this.puntaje = 0;
-        }else {
+
+        if (tipo != 'H') {
             if (tipo == 'K' && vida == 0) {
                 this.puntaje = 13;
-            }else if(tipo == 'K') {
+            } else if (tipo == 'K') {
                 this.puntaje = 3;
             }
             if (tipo == 'C' && vida == 0) {
                 this.puntaje = 9;
-            }else if(tipo == 'C'){
+            } else if (tipo == 'C') {
                 this.puntaje = 2;
             }
             if (tipo == 'T') {
                 this.puntaje = 1;
             }
-        }
-        
+        } 
     }
 
     /**
@@ -87,12 +89,6 @@ public class Huevo implements IUbicable {
      */
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
-    }
-
-    @Override
-    public void ubicar(int fila, int columna) {
-        setColumna(columna);
-        setFila(fila);
     }
 
     @Override

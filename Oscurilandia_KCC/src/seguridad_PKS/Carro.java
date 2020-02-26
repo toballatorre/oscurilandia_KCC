@@ -3,13 +3,13 @@
  */
 package seguridad_PKS;
 
-import tablero.IUbicable;
+import tablero.IIdentificable;
 
 /**
  * @author KCC
  *
  */
-public abstract class Carro implements IUbicable {
+public abstract class Carro implements IIdentificable {
 
     // Atributos
     private int tamano;
@@ -28,7 +28,7 @@ public abstract class Carro implements IUbicable {
      * @param ubicacionTablero
      * @param id
      */
-    public Carro(String id) {
+    public Carro(String id, int fila, int columna) {
         this.cantidadOcupantes = cantidadOcupantes;
         this.fechaIngreso = generaFecha();
         this.fila = fila;

@@ -15,8 +15,8 @@ public class Trupalla extends Carro {
      * @param armadura
      * @param nombrePiloto
      */
-    public Trupalla(String id) {
-        super(id);
+    public Trupalla(String id, int fila, int columna) {
+        super(id, fila, columna);
         setCantidadOcupantes(1);
         setTamano(TAMANO);
         generaArmadura();
@@ -68,11 +68,5 @@ public class Trupalla extends Carro {
      */
     private void generaArmadura() {
         this.armadura = (int) (Math.random() * 5 + 1);
-    }
-
-    @Override
-    public void ubicar(int fila, int columna) {
-        setFila(fila);
-        setColumna(columna);
     }
 }

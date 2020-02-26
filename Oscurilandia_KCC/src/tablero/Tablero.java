@@ -10,14 +10,13 @@ public class Tablero {
     public final int CANTIDAD_KROMI = 3;
     public final int CANTIDAD_CAGUANO = 5;
     public final int CANTIDAD_TRUPALLA = 10;
-    private final char[] MARGENES = { '╔', '╗', '╦', '║', '╠', '═', '╣', '╬', '╚', '╝', '╩' };
 
     public final int FILAS = 15;
     public final int COLUMNAS = 15;
 
     private ArrayList<Carro> carros = new ArrayList<Carro>();
     private ArrayList<Huevo> huevos = new ArrayList<Huevo>();
-    private IUbicable[][] tablero = new IUbicable[FILAS][COLUMNAS];
+    private IIdentificable[][] tablero = new IIdentificable[FILAS][COLUMNAS];
 
     // =========== CONSTRUCTOR ==========
 
@@ -26,19 +25,28 @@ public class Tablero {
     }
 
     // ========== METODOS ==========
-    
-    public void muestraHuevos() {
+    /**
+     * Suma todos los puntajes de los huevos de la lista.
+     * 
+     * @return la suma total del puntaje
+     */
+    public double totalPuntaje() {
+        double totalPuntaje = 0;
         for (Huevo huevo : this.huevos) {
-            System.out.print("["+huevo.getPuntaje()+"]");
+            totalPuntaje += huevo.getPuntaje();
         }
+        return totalPuntaje;
     }
-    
+
+    /**
+     * Muestra de manera formateada la informacion de cada carro
+     */
     public void muestraCarros() {
         for (Carro carro : this.carros) {
-            System.out.print("["+carro.getId()+"]");
+            System.out.print("[" + carro.getId() + "]");
         }
     }
-    
+
     /**
      * 
      * @param fila
@@ -76,16 +84,16 @@ public class Tablero {
                 // Confirma si los demas espacios estan vacios, luego ingresa el carro
                 if (estaVacia((coordenada[0] + 1), coordenada[1]) && estaVacia((coordenada[0] + 2), coordenada[1])) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Kromi("K-" + cKromi);
+                    tablero[coordenada[0]][coordenada[1]] = new Kromi("K-" + cKromi, coordenada[0], coordenada[1]);
                     tablero[coordenada[0] + 1][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
                     tablero[coordenada[0] + 2][coordenada[1]] = tablero[coordenada[0]][coordenada[1]];
-                    Carro k = (Carro)tablero[coordenada[0]][coordenada[1]];
+                    Carro k = (Carro) tablero[coordenada[0]][coordenada[1]];
                     carros.add(k);
                     cKromi++;
                 }
 
             }
-            
+
         } while (cKromi < CANTIDAD_KROMI);
 
         // ========== CREAN CAGUANOS ==========
@@ -100,9 +108,9 @@ public class Tablero {
                 // Confirma si el siguiente espacio esta vacio, luego ingresa el carro
                 if (estaVacia(coordenada[0], (coordenada[1] + 1))) {
 
-                    tablero[coordenada[0]][coordenada[1]] = new Caguano("C-" + cCaguano);
+                    tablero[coordenada[0]][coordenada[1]] = new Caguano("C-" + cCaguano, coordenada[0], coordenada[1]);
                     tablero[coordenada[0]][coordenada[1] + 1] = tablero[coordenada[0]][coordenada[1]];
-                    Carro c = (Carro)tablero[coordenada[0]][coordenada[1]];
+                    Carro c = (Carro) tablero[coordenada[0]][coordenada[1]];
                     carros.add(c);
                     cCaguano++;
                 }
@@ -120,8 +128,8 @@ public class Tablero {
             // Confirma si el espacio esta vacio
             if (estaVacia(coordenada[0], coordenada[1])) {
 
-                tablero[coordenada[0]][coordenada[1]] = new Trupalla("T-" + cTrupalla);
-                Carro t = (Carro)tablero[coordenada[0]][coordenada[1]];
+                tablero[coordenada[0]][coordenada[1]] = new Trupalla("T-" + cTrupalla, coordenada[0], coordenada[1]);
+                Carro t = (Carro) tablero[coordenada[0]][coordenada[1]];
                 carros.add(t);
                 cTrupalla++;
             }
@@ -163,8 +171,15 @@ public class Tablero {
      * IUbicable
      */
     public void mostrarMatriz(boolean oculta) {
+        char[] MARGENES = { '╔', '╗', '╦', '║', '╠', '═', '╣', '╬', '╚', '╝', '╩' };
 
         // ========== MARGEN SUPERIOR ╔═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╗
+        for (int i = 0; i < COLUMNAS; i++) {
+            if(i != COLUMNAS-1)
+                System.out.printf("%4s", i+" ");
+            else
+                System.out.printf("%4s %n", i+" ");
+        }
 
         for (int i = 0; i <= COLUMNAS * 2; i++) {
 
@@ -178,7 +193,7 @@ public class Tablero {
                         System.out.print(MARGENES[2]); // ╦
                 }
             } else {
-                System.out.print(MARGENES[5]); // ═
+                System.out.print("═══"); // ═
             }
         }
 
@@ -192,13 +207,15 @@ public class Tablero {
 
                 // Muestra el contenido vacio o no
                 if (estaVacia(i, j) || (oculta && tablero[i][j].getTipo() != 'H'))
-                    System.out.print(" ");
+                    System.out.print("   ");
                 else {
-                    System.out.print(tablero[i][j].getTipo());
+                    System.out.print(" " + tablero[i][j].getTipo() + " ");
                 }
                 // Margen al final del contenido y salto de linea
-                if (j == COLUMNAS - 1)
-                    System.out.print(MARGENES[3] + "\n"); // ║
+                if (j == COLUMNAS - 1) {
+                    System.out.print(MARGENES[3]); // ║
+                    System.out.print(" " + i + "\n");
+                }
 
             }
 
@@ -217,7 +234,7 @@ public class Tablero {
                                 System.out.print(MARGENES[7]); // ╬
                         }
                     } else {
-                        System.out.print(MARGENES[5]); // ═
+                        System.out.print("═══"); // ═
                     }
                 }
                 // ========== MARGEN INFERIOR ╚═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╝
@@ -230,11 +247,12 @@ public class Tablero {
                         else {
                             if (j == COLUMNAS * 2)
                                 System.out.print(MARGENES[9] + "\n"); // ╝
+
                             else
                                 System.out.print(MARGENES[10]); // ╩
                         }
                     } else {
-                        System.out.print(MARGENES[5]); // ═
+                        System.out.print("═══"); // ═
                     }
                 }
             }

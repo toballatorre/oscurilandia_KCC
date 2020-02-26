@@ -1,5 +1,5 @@
 /**
- * 
+ * Clase hija de Carro que implementa 
  */
 package seguridad_PKS;
 
@@ -9,12 +9,13 @@ package seguridad_PKS;
  */
 public class Kromi extends Carro {
 
-    // Atributos
+    // ========== ATRIBUTOS ==========
+    
     private final int TAMANO = 3;
     private int anoFabricacion;
     private String marca;
 
-    // Constructor
+    // ========== Constructor ==========
 
     /**
      * @param cantidadOcupantes
@@ -22,9 +23,9 @@ public class Kromi extends Carro {
      * @param anoFabricacion
      * @param marca
      */
-    public Kromi(String id) {
+    public Kromi(String id, int fila, int columna) {
 
-        super(id);
+        super(id, fila, columna);
         setCantidadOcupantes(10);
         setTamano(TAMANO);
         generaAno();
@@ -79,11 +80,5 @@ public class Kromi extends Carro {
         String[] marcas = { "Chiwawa", "Waffles", "Caracoqueso", "Wachimingo" };
         int i = (int) (Math.random() * marcas.length);
         this.marca = marcas[i];
-    }
-
-    @Override
-    public void ubicar(int fila, int columna) {
-        setFila(fila);
-        setColumna(columna);
     }
 }
