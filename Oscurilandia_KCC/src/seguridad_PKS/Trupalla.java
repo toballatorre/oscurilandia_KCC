@@ -56,8 +56,13 @@ public class Trupalla extends Carro {
     // ========== TO SRING ==========
     @Override
     public String toString() {
+        
         int[] ingreso = getFechaIngreso();
-        return "" + getCantidadOcupantes() + ingreso[0] + "/" + ingreso[1] + "/" + ingreso[2] + "("+ getFila() + "," + getColumna() + ")" + armadura + nombrePiloto;
+        String ing = String.format("%d/%d/%d", ingreso[0], ingreso[1], ingreso[2]);
+        String coordenada = String.format("(%d,%d)", getFila(), getColumna());
+
+        return String.format("%4s %19d %14s %10s %16d %s", getId(), getCantidadOcupantes(), ing, coordenada,
+                armadura, nombrePiloto);
     }
 
     // ========== METODOS ==========

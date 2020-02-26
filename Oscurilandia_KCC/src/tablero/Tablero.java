@@ -8,7 +8,7 @@ import seguridad_PKS.*;
 public class Tablero {
 
     // ========== CONSTANTES ==========
-    
+
     public final int CANTIDAD_KROMI = 3;
     public final int CANTIDAD_CAGUANO = 5;
     public final int CANTIDAD_TRUPALLA = 10;
@@ -16,7 +16,7 @@ public class Tablero {
     public final int COLUMNAS = 15;
 
     // ========== ATRIBUTOS ==========
-    
+
     private ArrayList<Carro> carros = new ArrayList<Carro>();
     private ArrayList<Huevo> huevos = new ArrayList<Huevo>();
     private IIdentificable[][] tablero = new IIdentificable[FILAS][COLUMNAS];
@@ -28,7 +28,7 @@ public class Tablero {
         crearCarro();
         this.puntajeTotal = 0;
     }
-    
+
     // ========== GET ==========
 
     /**
@@ -44,20 +44,47 @@ public class Tablero {
     public int getCOLUMNAS() {
         return COLUMNAS;
     }
-    
+
     public int getPuntajeTotal() {
         this.puntajeTotal = totalPuntaje();
         return puntajeTotal;
     }
 
-
     // ========== METODOS ==========
     
+    /**
+     * Muestra la lista de carros por tipo
+     */
     public void mostrarListaCarros() {
+
+        // Imprimir las Kromis
+        System.out.printf("%10s %n", String.format("%4s %19s %14s %10s %16s %s", "id", "Cantidad Ocupantes",
+                "Fecha Ingreso", "Ubicacion", "Ano Fabricacion", "Marca"));
         for (Carro carro : carros) {
-            System.out.printf("%10s %n", carro.toString());
+            if (carro.getTipo() == 'K') {
+                System.out.printf("%10s %n", carro.toString());
+            }
+        }
+        System.out.println("");
+        // Imprimir los Caguanos
+        System.out.printf("%10s %n", String.format("%4s %19s %14s %10s %16s %s", "id", "Cantidad Ocupantes",
+                "Fecha Ingreso", "Ubicacion", "Alcance de tiro", "Color Confetti"));
+        for (Carro carro : carros) {
+            if (carro.getTipo() == 'C') {
+                System.out.printf("%10s %n", carro.toString());
+            }
+        }
+        System.out.println("");
+        // Imprimir los Trupalla
+        System.out.printf("%10s %n", String.format("%4s %19s %14s %10s %16s %s", "id", "Cantidad Ocupantes",
+                "Fecha Ingreso", "Ubicacion", "Armadura", "Nombre Piloto"));
+        for (Carro carro : carros) {
+            if (carro.getTipo() == 'T') {
+                System.out.printf("%10s %n", carro.toString());
+            }
         }
     }
+
     /**
      * Suma todos los puntajes de los huevos de la lista.
      * 
@@ -92,7 +119,8 @@ public class Tablero {
         if (estaVacia(fila, columna) || tablero[fila][columna].getTipo() == 'H') {
             tablero[fila][columna] = new Huevo(fila, columna);
 
-            // Si no esta vacia y no es un huevo crea el huevo con puntaje segun tipo de carro
+            // Si no esta vacia y no es un huevo crea el huevo con puntaje segun tipo de
+            // carro
         } else {
             Carro c = (Carro) tablero[fila][columna];
             c.quitaVida();
@@ -102,8 +130,11 @@ public class Tablero {
         // Ingresa el huevo en la lista de huevos
         Huevo h = (Huevo) tablero[fila][columna];
         huevos.add(h);
-        System.out.println(h.getPuntaje());
-
+        String coordenada = String.format("(%d,%d)", h.getFila(), h.getColumna());
+        System.out.println("\n" + "EL PUNTAJE DEL HUEVO ES: ");
+        System.out.printf(String.format("%8s %9s %n", "Ubicacion", "Puntaje"));
+        System.out.printf(String.format("%8s %5d %n", coordenada, h.getPuntaje()));
+        System.out.println("");
     }
 
     /**
