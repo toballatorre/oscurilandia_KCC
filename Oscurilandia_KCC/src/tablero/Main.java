@@ -32,7 +32,7 @@ public class Main {
         } while (continuar);
         
         camaraSecreta.mostrarMatriz(continuar);
-        camaraSecreta.totalPuntaje();
+        System.out.println(camaraSecreta.totalPuntaje());
         System.out.println("");
         camaraSecreta.muestraCarros();
 
