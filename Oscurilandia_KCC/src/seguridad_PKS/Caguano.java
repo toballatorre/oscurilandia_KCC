@@ -55,6 +55,13 @@ public class Caguano extends Carro {
         this.colorConfeti = colorConfeti;
     }
     
+    // ========== TO SRING ==========
+    @Override
+    public String toString() {
+        int[] ingreso = getFechaIngreso();
+        return "" + getCantidadOcupantes() + ingreso[0] + "/" + ingreso[1] + "/" + ingreso[2] + "("+ getFila() + "," + getColumna() + ")" + alcanceTiro + colorConfeti;
+    }
+    
     // ========== METODOS ==========
 
     /**

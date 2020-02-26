@@ -1,41 +1,45 @@
 package tablero;
 
-import java.util.Scanner;
+import tablero.HerramientasMain;
 
 public class Main {
 
     public static void main(String[] args) {
-        boolean continuar = true;
 
-        Tablero camaraSecreta = new Tablero();
-        camaraSecreta.mostrarMatriz(false);
-
-        int fila;
-        int columna;
-        String op;
+        // Bucle de opcion de menus
+        boolean salirMenu = false;
+        Tablero camaraSecreta = new Tablero();// Se crea el tablero con los carros
 
         do {
-            System.out.println("Ingrese coordenadas entre 0..14");
-            Scanner entrada = new Scanner(System.in);
-                fila = entrada.nextInt();
-                columna = entrada.nextInt();
 
-            camaraSecreta.crearHuevo(fila, columna);
-            camaraSecreta.mostrarMatriz(false);
+            boolean continuar = true;
+            int op = HerramientasMain.ingresarOpcion();
 
-            System.out.println("Desea continuar? (s/n)");
-            op = entrada.next();
-            if (!op.equals("s")) {
-                continuar = false;
+            switch (op) {
+            case 1: // MUESTRA LA LISTA DE CARROS
+                camaraSecreta.mostrarListaCarros();
+
+                break;
+            case 2: // MUESTRA EL TABLERO CON LAS UBICACIONES
+                camaraSecreta.mostrarMatriz(false);
+                break;
+
+            case 3: // JUEGO LANZAR HUEVOS
+                do {
+                    continuar = HerramientasMain.jugarLanzarHuevos(camaraSecreta);
+                } while (continuar);
+
+                System.out.println("\n" + "PUNTAJE TOTAL: " + camaraSecreta.getPuntajeTotal());
+
+                break;
+            case 4:
+                System.out.println("Adios!");
+                salirMenu = true;
+                break;
             }
+            System.out.println("");
+            
+        } while (!salirMenu);
 
-        } while (continuar);
-        
-        camaraSecreta.mostrarMatriz(continuar);
-        System.out.println(camaraSecreta.totalPuntaje());
-        System.out.println("");
-        camaraSecreta.muestraCarros();
-
-    }
-
+    } // FIN MAIN
 }

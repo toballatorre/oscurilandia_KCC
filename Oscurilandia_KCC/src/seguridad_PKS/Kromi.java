@@ -52,7 +52,15 @@ public class Kromi extends Carro {
     public void setMarca(String marca) {
         this.marca = marca;
     }
-
+    
+    // ========== TO STRING ==========
+    
+    @Override
+    public String toString() {
+        int[] ingreso = getFechaIngreso();
+        return "" + getCantidadOcupantes() + ingreso[0] + "/" + ingreso[1] + "/" + ingreso[2] + "("+ getFila() + "," + getColumna() + ")" + anoFabricacion + marca;
+    }
+    
     // ========== METODOS ==========
     /**
      * Genera el año de fabricacion del carro Kromi
@@ -61,6 +69,7 @@ public class Kromi extends Carro {
         int[] fechaIngreso = getFechaIngreso();
         this.anoFabricacion = (int) (Math.random() * (fechaIngreso[2] - 1998) + 1998);
     }
+
 
     /**
      * Genera una marca de manera aleatoria

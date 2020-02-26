@@ -52,7 +52,14 @@ public class Trupalla extends Carro {
     public String getNombrePiloto() {
         return nombrePiloto;
     }
-    
+
+    // ========== TO SRING ==========
+    @Override
+    public String toString() {
+        int[] ingreso = getFechaIngreso();
+        return "" + getCantidadOcupantes() + ingreso[0] + "/" + ingreso[1] + "/" + ingreso[2] + "("+ getFila() + "," + getColumna() + ")" + armadura + nombrePiloto;
+    }
+
     // ========== METODOS ==========
 
     /**
@@ -61,7 +68,7 @@ public class Trupalla extends Carro {
     public void setNombrePiloto(String nombrePiloto) {
         this.nombrePiloto = nombrePiloto;
     }
-    
+
     /**
      * Genera un nombre aleatorio de entre la lista de nombres que se dispone
      */

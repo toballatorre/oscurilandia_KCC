@@ -7,31 +7,64 @@ import seguridad_PKS.*;
 
 public class Tablero {
 
+    // ========== CONSTANTES ==========
+    
     public final int CANTIDAD_KROMI = 3;
     public final int CANTIDAD_CAGUANO = 5;
     public final int CANTIDAD_TRUPALLA = 10;
-
     public final int FILAS = 15;
     public final int COLUMNAS = 15;
 
+    // ========== ATRIBUTOS ==========
+    
     private ArrayList<Carro> carros = new ArrayList<Carro>();
     private ArrayList<Huevo> huevos = new ArrayList<Huevo>();
     private IIdentificable[][] tablero = new IIdentificable[FILAS][COLUMNAS];
+    private int puntajeTotal;
 
     // =========== CONSTRUCTOR ==========
 
     public Tablero() {
         crearCarro();
+        this.puntajeTotal = 0;
+    }
+    
+    // ========== GET ==========
+
+    /**
+     * @return the FILAS
+     */
+    public int getFILAS() {
+        return FILAS;
     }
 
+    /**
+     * @return the COLUMNAS
+     */
+    public int getCOLUMNAS() {
+        return COLUMNAS;
+    }
+    
+    public int getPuntajeTotal() {
+        this.puntajeTotal = totalPuntaje();
+        return puntajeTotal;
+    }
+
+
     // ========== METODOS ==========
+    
+    public void mostrarListaCarros() {
+        for (Carro carro : carros) {
+            System.out.printf("%10s %n", carro.toString());
+        }
+    }
     /**
      * Suma todos los puntajes de los huevos de la lista.
      * 
      * @return la suma total del puntaje
      */
-    public double totalPuntaje() {
-        double totalPuntaje = 0;
+    private int totalPuntaje() {
+        int totalPuntaje = 0;
         for (Huevo huevo : this.huevos) {
             totalPuntaje += huevo.getPuntaje();
         }
@@ -48,19 +81,25 @@ public class Tablero {
     }
 
     /**
+     * Crea un huevo si el lugar esta vacio u ocupado por algun objeto y reemplaza
+     * el objeto en la ubicacion por un huevo y lo agrega a la lista de huevos
      * 
      * @param fila
      * @param columna
      */
     public void crearHuevo(int fila, int columna) {
-
+        // Si esta vacia O es un huevo crea el huevo con 0 puntos
         if (estaVacia(fila, columna) || tablero[fila][columna].getTipo() == 'H') {
             tablero[fila][columna] = new Huevo(fila, columna);
+
+            // Si no esta vacia y no es un huevo crea el huevo con puntaje segun tipo de carro
         } else {
             Carro c = (Carro) tablero[fila][columna];
             c.quitaVida();
             tablero[fila][columna] = new Huevo(fila, columna, c.getTipo(), c.getTamano());
         }
+
+        // Ingresa el huevo en la lista de huevos
         Huevo h = (Huevo) tablero[fila][columna];
         huevos.add(h);
         System.out.println(h.getPuntaje());
@@ -171,17 +210,17 @@ public class Tablero {
      * IUbicable
      */
     public void mostrarMatriz(boolean oculta) {
-        
+
         // ========== MARGEN SUPERIOR ╔═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╗
         System.out.printf("%3s", " ");
-        
+
         for (int i = 0; i < COLUMNAS; i++) {
-            if(i != COLUMNAS-1)
-                System.out.printf("%4s", i+" ");
+            if (i != COLUMNAS - 1)
+                System.out.printf("%4s", i + " ");
             else
-                System.out.printf("%4s %n", i+" ");
+                System.out.printf("%4s %n", i + " ");
         }
-        
+
         System.out.printf("%3s", " ");
         for (int i = 0; i <= COLUMNAS * 2; i++) {
 
@@ -202,7 +241,7 @@ public class Tablero {
         // ========== MARGEN Y CONTENIDO ║K║T║ ║ ║ ║ ║ ║ ║T║ ║T║ ║ ║ ║K║
 
         for (int i = 0; i < FILAS; i++) {
-            System.out.printf("%3s", i+" ");
+            System.out.printf("%3s", i + " ");
             for (int j = 0; j < COLUMNAS; j++) {
 
                 // Margen antes del contenido
@@ -216,7 +255,7 @@ public class Tablero {
                 }
                 // Margen al final del contenido y salto de linea
                 if (j == COLUMNAS - 1) {
-                    System.out.print('║'+"\n"); // ║
+                    System.out.print('║' + "\n"); // ║
                 }
 
             }
