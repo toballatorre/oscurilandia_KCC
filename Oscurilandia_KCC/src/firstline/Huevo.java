@@ -1,21 +1,42 @@
+/**
+ * Clase huevo que se implementa para poder impactar a los carros en la matriz
+ */
 package firstline;
 
 import tablero.IIdentificable;
+/**
+ * 
+ * @author KCC
+ *
+ */
 
 public class Huevo implements IIdentificable {
+
+    // ========== ATRIBUTOS ==========
 
     private int fila;
     private int columna;
     private int puntaje;
 
     // ========== CONSTRUCTORES ==========
-
+    /**
+     * Constructos para cuando no impacta un carro
+     * @param fila
+     * @param columna
+     */
     public Huevo(int fila, int columna) {
         this.puntaje = 0;
         this.fila = fila;
         this.columna = columna;
     }
-
+    
+    /**
+     * Constructor cuando impacta un carro
+     * @param fila
+     * @param columna
+     * @param tipo
+     * @param vida
+     */
     public Huevo(int fila, int columna, char tipo, int vida) {
         this(fila, columna);
         asignarPuntaje(tipo, vida);
@@ -46,9 +67,10 @@ public class Huevo implements IIdentificable {
             if (tipo == 'T') {
                 this.puntaje = 1;
             }
-        } 
+        }
     }
 
+    // ========== GET SET ==========
     /**
      * @return the fila
      */
@@ -90,7 +112,8 @@ public class Huevo implements IIdentificable {
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
-
+    
+    // ========== HEREDADO INTERFACE IIDENTIFICABLE ==========
     @Override
     public char getTipo() {
         return 'H';

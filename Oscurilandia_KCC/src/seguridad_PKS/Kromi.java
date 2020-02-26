@@ -1,5 +1,5 @@
 /**
- * Clase hija de Carro que implementa 
+ * Clase hija de Carro que implementa la interface IIdentificable
  */
 package seguridad_PKS;
 
@@ -8,44 +8,25 @@ package seguridad_PKS;
  *
  */
 public class Kromi extends Carro {
-
-    // ========== ATRIBUTOS ==========
     
+    // ========== ATRIBUTOS ==========
     private final int TAMANO = 3;
     private int anoFabricacion;
     private String marca;
 
-    // ========== Constructor ==========
+    // ========== CONSTRUCTOR ==========
 
-    /**
-     * @param cantidadOcupantes
-     * @param id
-     * @param anoFabricacion
-     * @param marca
-     */
     public Kromi(String id, int fila, int columna) {
-
         super(id, fila, columna);
         setCantidadOcupantes(10);
         setTamano(TAMANO);
-        generaAno();
+        generaAnoFabricacion();
         generaMarca();
-
     }
 
+    // ========== GET SET ==========
     /**
-     * Retorna el tipo que es
-     * 
-     * @return
-     */
-    @Override
-    public char getTipo() {
-        return 'K';
-    }
-
-    // Metodos Get and Set
-    /**
-     * @return the anoFabricacion
+     * @return el anoFabricacion
      */
     public int getAnoFabricacion() {
         return anoFabricacion;
@@ -72,13 +53,33 @@ public class Kromi extends Carro {
         this.marca = marca;
     }
 
-    private void generaAno() {
-        this.anoFabricacion = (int) (Math.random() * (2020 - 1998) + 1998);
+    // ========== METODOS ==========
+    /**
+     * Genera el año de fabricacion del carro Kromi
+     */
+    private void generaAnoFabricacion() {
+        int[] fechaIngreso = getFechaIngreso();
+        this.anoFabricacion = (int) (Math.random() * (fechaIngreso[2] - 1998) + 1998);
     }
 
+    /**
+     * Genera una marca de manera aleatoria
+     */
     private void generaMarca() {
         String[] marcas = { "Chiwawa", "Waffles", "Caracoqueso", "Wachimingo" };
         int i = (int) (Math.random() * marcas.length);
         this.marca = marcas[i];
+    }
+
+    // ========== HEREDADO INTERFACE IIDENTIFICABLE ==========
+    
+    /**
+     * Retorna el tipo de carro que es
+     * 
+     * @return retorna un caracter que identifica el carro
+     */
+    @Override
+    public char getTipo() {
+        return 'K';
     }
 }

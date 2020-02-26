@@ -1,5 +1,5 @@
 /**
- * 
+ * Clase hija de Carro que implementa la interface IIdentificable
  */
 package seguridad_PKS;
 
@@ -8,20 +8,15 @@ package seguridad_PKS;
  *
  */
 public class Caguano extends Carro {
-    
-    // Atributos
-    public final int TAMANO = 2;
+
+    // ========== ATRIBUTOS ==========
+
+    public int TAMANO = 2;
     private int alcanceTiro;
     private String colorConfeti;
 
-    // Constructor
-   
-    /**
-     * @param cantidadOcupantes
-     * @param id
-     * @param alcanceTiro
-     * @param colorConfeti
-     */
+    // ========== CONSTRUCTOR ==========
+
     public Caguano(String id, int fila, int columna) {
         super(id, fila, columna);
         setCantidadOcupantes(4);
@@ -29,13 +24,8 @@ public class Caguano extends Carro {
         this.alcanceTiro = 10;
         generaColor();
     }
-    
 
-    // Metodos Get and Set
-    @Override
-    public char getTipo() {
-        return 'C';
-    }
+    // ========== GET SET ===========
 
     /**
      * @return the alcanceTiro
@@ -57,19 +47,34 @@ public class Caguano extends Carro {
     public String getColorConfeti() {
         return colorConfeti;
     }
-
+    
     /**
      * @param colorConfeti the colorConfeti to set
      */
     public void setColorConfeti(String colorConfeti) {
         this.colorConfeti = colorConfeti;
     }
+    
+    // ========== METODOS ==========
+
     /**
      * 
      */
     private void generaColor() {
-        String[] colores = { "Rojo", "Rosado", "Rojo Maraco Intenso", "Verde Limon", "Sangre De Toro"};
+        String[] colores = { "Rojo", "Rosado", "Rojo Maraco Intenso", "Verde Limon", "Sangre De Toro" };
         int i = (int) (Math.random() * colores.length);
         this.colorConfeti = colores[i];
+    }
+
+    // ========== HEREDADO INTERFACE IIDENTIFICABLE ==========
+    
+    /**
+     * Retorna el tipo de carro que es
+     * 
+     * @return retorna un caracter que identifica el carro
+     */
+    @Override
+    public char getTipo() {
+        return 'C';
     }
 }

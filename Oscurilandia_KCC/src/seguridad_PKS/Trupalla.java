@@ -1,13 +1,20 @@
+/**
+ * Clase hija de Carro que implementa la interface IIdentificable
+ */
 package seguridad_PKS;
 
+/**
+ * @author KCC
+ */
 public class Trupalla extends Carro {
 
-    // Atributos
+    // ========== ATRIBUTOS ===========
+
     private final int TAMANO = 1;
     private int armadura;
     private String nombrePiloto;
 
-    // Constructor
+    // ========== CONSTRUCTOR ==========
 
     /**
      * @param cantidadOcupantes
@@ -23,11 +30,7 @@ public class Trupalla extends Carro {
         generaNombre();
     }
 
-    // Metodos Get and Set
-    @Override
-    public char getTipo() {
-        return 'T';
-    }
+    // ========== GET SET ==========
 
     /**
      * @return the armadura
@@ -49,6 +52,8 @@ public class Trupalla extends Carro {
     public String getNombrePiloto() {
         return nombrePiloto;
     }
+    
+    // ========== METODOS ==========
 
     /**
      * @param nombrePiloto the nombrePiloto to set
@@ -56,7 +61,10 @@ public class Trupalla extends Carro {
     public void setNombrePiloto(String nombrePiloto) {
         this.nombrePiloto = nombrePiloto;
     }
-
+    
+    /**
+     * Genera un nombre aleatorio de entre la lista de nombres que se dispone
+     */
     private void generaNombre() {
         String[] nombres = { "Pepe", "Juan", "Antonia", "Destroyer", "Goliath", "Karla", "Shina" };
         int i = (int) (Math.random() * nombres.length);
@@ -64,9 +72,17 @@ public class Trupalla extends Carro {
     }
 
     /**
-     * 
+     * Genera de manera aleatoria el nivel de armadura entre 1 y 5
      */
     private void generaArmadura() {
-        this.armadura = (int) (Math.random() * 5 + 1);
+        int min = 1;
+        int max = 5;
+        this.armadura = (int) (Math.random() * max + min);
+    }
+
+    // ========== HEREDADO INTERFACE IIDENTIFICABLE ==========
+    @Override
+    public char getTipo() {
+        return 'T';
     }
 }

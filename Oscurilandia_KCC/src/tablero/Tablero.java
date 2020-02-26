@@ -171,26 +171,28 @@ public class Tablero {
      * IUbicable
      */
     public void mostrarMatriz(boolean oculta) {
-        char[] MARGENES = { '╔', '╗', '╦', '║', '╠', '═', '╣', '╬', '╚', '╝', '╩' };
-
+        
         // ========== MARGEN SUPERIOR ╔═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╦═╗
+        System.out.printf("%3s", " ");
+        
         for (int i = 0; i < COLUMNAS; i++) {
             if(i != COLUMNAS-1)
                 System.out.printf("%4s", i+" ");
             else
                 System.out.printf("%4s %n", i+" ");
         }
-
+        
+        System.out.printf("%3s", " ");
         for (int i = 0; i <= COLUMNAS * 2; i++) {
 
             if (i % 2 == 0) {
                 if (i == 0)
-                    System.out.print(MARGENES[0]); // ╔
+                    System.out.print('╔'); // ╔
                 else {
                     if (i == FILAS * 2)
-                        System.out.print(MARGENES[1] + "\n"); // ╗
+                        System.out.print('╗' + "\n"); // ╗
                     else
-                        System.out.print(MARGENES[2]); // ╦
+                        System.out.print('╦'); // ╦
                 }
             } else {
                 System.out.print("═══"); // ═
@@ -200,10 +202,11 @@ public class Tablero {
         // ========== MARGEN Y CONTENIDO ║K║T║ ║ ║ ║ ║ ║ ║T║ ║T║ ║ ║ ║K║
 
         for (int i = 0; i < FILAS; i++) {
+            System.out.printf("%3s", i+" ");
             for (int j = 0; j < COLUMNAS; j++) {
 
                 // Margen antes del contenido
-                System.out.print(MARGENES[3]); // ║
+                System.out.print('║'); // ║
 
                 // Muestra el contenido vacio o no
                 if (estaVacia(i, j) || (oculta && tablero[i][j].getTipo() != 'H'))
@@ -213,8 +216,7 @@ public class Tablero {
                 }
                 // Margen al final del contenido y salto de linea
                 if (j == COLUMNAS - 1) {
-                    System.out.print(MARGENES[3]); // ║
-                    System.out.print(" " + i + "\n");
+                    System.out.print('║'+"\n"); // ║
                 }
 
             }
@@ -222,16 +224,17 @@ public class Tablero {
             // ========== MARGEN SEPARADOR DE FILAS ╠═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╬═╣
 
             if (i != FILAS - 1) {
+                System.out.printf("%3s", " ");
                 for (int j = 0; j <= COLUMNAS * 2; j++) {
 
                     if (j % 2 == 0) {
                         if (j == 0)
-                            System.out.print(MARGENES[4]); // ╠
+                            System.out.print('╠'); // ╠
                         else {
                             if (j == COLUMNAS * 2)
-                                System.out.print(MARGENES[6] + "\n"); // ╣
+                                System.out.print('╣' + "\n"); // ╣
                             else
-                                System.out.print(MARGENES[7]); // ╬
+                                System.out.print('╬'); // ╬
                         }
                     } else {
                         System.out.print("═══"); // ═
@@ -239,17 +242,18 @@ public class Tablero {
                 }
                 // ========== MARGEN INFERIOR ╚═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╩═╝
             } else {
+                System.out.printf("%3s", " ");
                 for (int j = 0; j <= COLUMNAS * 2; j++) {
 
                     if (j % 2 == 0) {
                         if (j == 0)
-                            System.out.print(MARGENES[8]);// ╚
+                            System.out.print('╚');// ╚
                         else {
                             if (j == COLUMNAS * 2)
-                                System.out.print(MARGENES[9] + "\n"); // ╝
+                                System.out.print('╝' + "\n"); // ╝
 
                             else
-                                System.out.print(MARGENES[10]); // ╩
+                                System.out.print('╩'); // ╩
                         }
                     } else {
                         System.out.print("═══"); // ═

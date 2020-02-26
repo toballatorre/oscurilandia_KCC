@@ -1,5 +1,5 @@
 /**
- * 
+ * Clase padre de los carros, la definimos como abtracta ya que nunca va a ser instanciada
  */
 package seguridad_PKS;
 
@@ -11,25 +11,18 @@ import tablero.IIdentificable;
  */
 public abstract class Carro implements IIdentificable {
 
-    // Atributos
+    // ========== ATRIBUTOS ==========
+
     private int tamano;
     private int cantidadOcupantes;
-    private String fechaIngreso;
+    private int[] fechaIngreso;
     private int fila;
     private int columna;
     private String id;
 
-    /**
-     * Constructor con todos los atributos
-     * 
-     * @param tamano
-     * @param cantidadOcupantes
-     * @param fechaIngreso
-     * @param ubicacionTablero
-     * @param id
-     */
+    // ========== CONSTRUCTOR ==========
+
     public Carro(String id, int fila, int columna) {
-        this.cantidadOcupantes = cantidadOcupantes;
         this.fechaIngreso = generaFecha();
         this.fila = fila;
         this.columna = columna;
@@ -69,14 +62,14 @@ public abstract class Carro implements IIdentificable {
     /**
      * @return the fechaIngreso
      */
-    public String getFechaIngreso() {
+    public int[] getFechaIngreso() {
         return fechaIngreso;
     }
 
     /**
      * @param fechaIngreso the fechaIngreso to set
      */
-    public void setFechaIngreso(String fechaIngreso) {
+    public void setFechaIngreso(int[] fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
@@ -123,12 +116,21 @@ public abstract class Carro implements IIdentificable {
     }
 
     // ========== METODOS ==========
-    
+
+    /**
+     * Al ser impactado quita 1 punto de vida al atributo tamano, porque se van
+     * afectando sectores el carro.
+     */
     public void quitaVida() {
         this.tamano--;
     }
-
-    private String generaFecha() {
+    
+    /**
+     * Genera una fecha de manera aleatoria tomando en cuenta los años bisiestos
+     * entre los años 1998 y 2020
+     * @return retorna un array con los datos de la fecha dia, mes, año
+     */
+    private int[] generaFecha() {
         int dia;
         int mes;
         int ano;
@@ -159,6 +161,7 @@ public abstract class Carro implements IIdentificable {
                     dia = (int) (Math.random() * 31 + 1);
             }
         }
-        return dia + "-" + mes + "-" + ano;
+        int[] fecha = {dia, mes, ano};
+        return fecha;
     }
 }
