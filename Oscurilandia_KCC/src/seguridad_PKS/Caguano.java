@@ -11,7 +11,7 @@ public class Caguano extends Carro {
 
     // ========== ATRIBUTOS ==========
 
-    public int TAMANO = 2;
+    private final int TAMANO = 2;
     private int alcanceTiro;
     private String colorConfeti;
 
