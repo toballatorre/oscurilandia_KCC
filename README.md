@@ -1,4 +1,4 @@
-![diagrama UML] (https://github.com/toballatorre/oscurilandia_KCC/blob/master/Oscurilandia_KCC/diagrama/oscurilandia_diagrama.png)
+![diagrama UML](https://github.com/toballatorre/oscurilandia_KCC/blob/master/Oscurilandia_KCC/diagrama/oscurilandia_diagrama.png)
 
 # OSCURILANDIA
 
