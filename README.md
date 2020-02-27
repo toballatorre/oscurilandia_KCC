@@ -1,5 +1,9 @@
 ![diagrama UML](https://github.com/toballatorre/oscurilandia_KCC/blob/master/Oscurilandia_KCC/diagrama/oscurilandia_diagrama.png)
 
+Cristobal Latorre
+Karla Gomez
+Claudia Lloncon
+
 # OSCURILANDIA
 
 ## 1.-Caso: “Consecuencias”
